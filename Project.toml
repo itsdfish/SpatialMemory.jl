@@ -1,0 +1,23 @@
+name = "SpatialMemory"
+uuid = "c29ff610-7f9b-4a80-8176-8ec6ff955760"
+authors = ["itsdfish"]
+version = "0.1.0"
+
+[deps]
+Cairo = "159f3aea-2a34-519c-b102-8c37f9878175"
+Gtk = "4c0ca9eb-093a-5379-98c5-f87ac0bbbf44"
+SafeTestsets = "1bc83da4-3b8d-516f-aca4-4fe02f6d838f"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+
+[compat]
+Cairo = "v1.0.0"
+Gtk = "v1.1.7"
+SafeTestsets = "v0.0.1"
+StatsBase = "0.33.0"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

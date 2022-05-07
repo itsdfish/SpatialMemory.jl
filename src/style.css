@@ -1,0 +1,124 @@
+#green{
+    background-color: rgb(73, 153, 73);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#red{
+    background-color: rgb(121, 70, 70);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    padding: 0 0;
+}
+
+#blue{
+    background-color: rgb(84, 91, 156);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#orange{
+    background-color: rgb(189, 131, 65);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#yellow{
+    background-color: rgb(228, 213, 83);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#green_clicked{
+    background-color: rgb(103, 143, 103);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#red_clicked{
+    background-color: rgb(131, 106, 106);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#blue_clicked{
+    background-color: rgb(127, 130, 156);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#orange_clicked{
+    background-color: rgb(204, 180, 152);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#yellow_clicked{
+    background-color: rgb(224, 218, 156);
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 155px;
+}
+
+#rounds_label{
+    font-size: 150%;
+}
+
+#round_count{
+    font-size: 150%;
+}
+
+#score_label{
+    font-size: 150%;
+}
+
+#score_value{
+    font-size: 150%;
+}
+
+#submit_label{
+    font-size: 200%;
+    color: black;
+}
+
+#start_label{
+    font-size: 200%;
+    color: black;
+}
