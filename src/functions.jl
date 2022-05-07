@@ -58,29 +58,6 @@ function score_trial(game)
     return round(score / n, digits = 2) 
 end
 
-# function score_trial(game)
-#     n_hits = 0
-#     n_false_alarms = 0
-#     n_target = game.dims[1]
-#     n_foil = prod(game.dims) - n_target
-#     for dot in game.dots
-#         if dot.is_target
-#             n_hits += dot.selected ? 1 : 0
-#         else
-#             n_false_alarms += dot.selected ? 1 : 0
-#         end
-#     end
-#     θhit = n_hits / n_target
-#     θfa = n_false_alarms / n_foil
-#     θhit = θhit == 1 ? (n_target - .01) / n_target : θhit
-#     θhit = θhit == 0 ? .01 / n_target : θhit
-#     θfa = θfa == 1 ? (n_foil - .01) / n_foil : θfa
-#     θfa = θfa == 0 ? (.01 / n_foil) : θfa
-#     println(θfa, " ", θhit)
-#     d′ = invlogcdf(Normal(0, 1), log(θhit)) - invlogcdf(Normal(0, 1), log(θfa))
-#     return d′
-# end
-
 function adapt_difficulty(game)
     (;score,) = game
     if score == 1
@@ -95,18 +72,3 @@ function adapt_difficulty(game)
     n_cols = max(n_cols, 2)
     return Game(game; n_cols, n_rows)
 end
-
-# function adapt_difficulty(game)
-#     (;score,) = game
-#     if score > 4
-#         n_rows,n_cols = game.dims = game.dims .+ 1
-#         return Game(game; n_cols, n_rows)
-#     elseif score ≥ 3
-#         n_rows,n_cols = game.dims
-#         return Game(game; n_cols, n_rows)
-#     end
-#     n_rows,n_cols = game.dims = game.dims .- 1
-#     n_rows = max(n_rows, 2)
-#     n_cols = max(n_cols, 2)
-#     return Game(game; n_cols, n_rows)
-# end

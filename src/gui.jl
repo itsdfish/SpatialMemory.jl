@@ -217,10 +217,13 @@ function click_dot!(game, dot, gui, button, style)
 end
 
 function display_targets!(game, gui, style)
+    cnt = 1
     for dot in game.dots 
         if dot.is_target
             button = get_button(gui, dot)
             change_color!(button, style, "target")
+            println("count $cnt")
+            cnt += 1
         end
     end
     return nothing
@@ -305,7 +308,6 @@ function click_start!(game, gui, style)
     if game.n_rounds != game.round
         game = adapt_difficulty(game)
         start_new_game!(gui, game)
-        select_targets!(game)
     end
     select_targets!(game)
     display_targets!(game, gui, style)
