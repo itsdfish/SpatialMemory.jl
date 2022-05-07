@@ -222,7 +222,6 @@ function display_targets!(game, gui, style)
         if dot.is_target
             button = get_button(gui, dot)
             change_color!(button, style, "target")
-            println("count $cnt")
             cnt += 1
         end
     end
