@@ -209,9 +209,9 @@ end
 function click_dot!(game, dot, gui, button, style)
     !click_dot!(game, dot) ? (return false) : nothing
     if dot.selected
-        add_color!(button, style)
+        change_color!(button, style, "target")
     else
-        make_grey!(button, style)
+        change_color!(button, style, "")
     end
     return true
 end
@@ -220,7 +220,7 @@ function display_targets!(game, gui, style)
     for dot in game.dots 
         if dot.is_target
             button = get_button(gui, dot)
-            add_color!(button, style)
+            change_color!(button, style, "target")
         end
     end
     return nothing
@@ -230,29 +230,22 @@ function remove_targets!(game, gui, style)
     for dot in game.dots 
         if dot.is_target
             button = get_button(gui, dot)
-            make_grey!(button, style)
+            change_color!(button, style, "")
         end
     end
     return nothing
 end
 
-function add_color!(button, style)
+function change_color!(button, style, color)
     label = button[1]
     sc = Gtk.GAccessor.style_context(label)
     push!(sc, StyleProvider(style), 600)
-    set_gtk_property!(label, :name, "red")
-end
-
-function make_grey!(button, style)
-    label = button[1]
-    sc = Gtk.GAccessor.style_context(label)
-    push!(sc, StyleProvider(style), 600)
-    set_gtk_property!(label, :name, "")
+    set_gtk_property!(label, :name, color)
 end
 
 function make_all_grey!(gui, game, style)
     for (button,dot) in zip(gui[1][3],game.dots)
-        make_grey!(button, style)
+        change_color!(button, style, "")
     end
     return nothing
 end
@@ -261,11 +254,26 @@ click_submit!(game, gui::GUI) = click_submit!(game, gui.gui, gui.style)
 
 function click_submit!(game, gui, style)
     !click_submit!(game) ? (return false) : nothing
-    game = adapt_difficulty(game)
-    start_new_game!(gui, game)
     update_score!(game, gui)
     update_round!(game, gui)
+    display_feedback!(game, gui, style)
     return true
+end
+
+function display_feedback!(game, gui, style)
+    for dot in game.dots
+        button = get_button(gui, dot)
+        if dot.is_target && dot.selected
+            change_color!(button, style, "hit")
+        elseif dot.is_target && !dot.selected
+            change_color!(button, style, "miss")
+        elseif !dot.is_target && dot.selected
+            change_color!(button, style, "false_alarm")
+        else
+            change_color!(button, style, "")
+        end
+    end
+    return nothing
 end
 
 function update_round!(game, gui)
@@ -294,6 +302,11 @@ end
 function click_start!(game, gui, style)
     game.can_start ? nothing : (return nothing)
     game.can_start = false
+    if game.n_rounds != game.round
+        game = adapt_difficulty(game)
+        start_new_game!(gui, game)
+        select_targets!(game)
+    end
     select_targets!(game)
     display_targets!(game, gui, style)
     Timer(_ -> remove_targets!(game, gui, style), 3) 
