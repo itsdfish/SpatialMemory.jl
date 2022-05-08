@@ -1,8 +1,7 @@
 using SafeTestsets
 
 @safetestset "select_targets!" begin
-    using SpatialMemory
-    using SpatialMemory: select_targets!
+    using SpatialMemory: select_targets!, Game
     using Test
 
     game = Game(;grid_size = 10)
@@ -14,8 +13,7 @@ using SafeTestsets
 end
 
 @safetestset "score_trial" begin
-    using SpatialMemory
-    using SpatialMemory: score_trial
+    using SpatialMemory: score_trial, Game
     using Test
 
     game = Game(;grid_size = 3)
