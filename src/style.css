@@ -8,7 +8,7 @@
 }
 
 #hit {
-    background-color: rgb(77, 168, 85);
+    background-color: rgb(67, 146, 74);
     color: white;
     font-family: DejaVu Sans;
     font-style: normal;
@@ -17,11 +17,11 @@
 }
 
 
-#false_alarm {
+#miss {
     border: 10px solid rgb(122, 77, 77);
 }
 
-#miss {
+#false_alarm {
     background-color: rgb(122, 77, 77);
     color: white;
     font-family: DejaVu Sans;

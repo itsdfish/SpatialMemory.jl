@@ -15,7 +15,7 @@ function can_respond(game)
     return game.can_respond
 end
 
-populate(n_rows, n_cols) = [Dot(;row, col) for row in 1:n_rows, col in 1:n_cols]
+populate(grid_size) = [Dot(;row, col) for row in 1:grid_size, col in 1:grid_size]
 
 game_over!(game) = game.round == 0
 
@@ -40,8 +40,8 @@ function click_submit!(game)
 end
 
 function select_targets!(game)
-    n = game.dims |> prod
-    n_targets = game.dims[1]
+    n = game.grid_size^2
+    n_targets = game.grid_size
     idx = sample(1:n, n_targets, replace=false)
     for i in idx 
         game.dots[i].is_target = true
@@ -51,24 +51,23 @@ end
 
 function score_trial(game)
     score = 0
-    n = game.dims |> prod
-    for dot in game.dots 
+    n = game.grid_size^2
+    for dot in game.dots
         score += dot.is_target == dot.selected ? 1 : -1
     end
     return round(score / n, digits = 2) 
 end
 
 function adapt_difficulty(game)
-    (;score,) = game
+    (;score,grid_size) = game
     if score == 1
-        n_rows,n_cols = game.dims = game.dims .+ 1
-        return Game(game; n_cols, n_rows)
+        grid_size += 1
+        return Game(game; grid_size)
     elseif score ≥ .8
-        n_rows,n_cols = game.dims
-        return Game(game; n_cols, n_rows)
+        grid_size = game.grid_size
+        return Game(game; grid_size)
     end
-    n_rows,n_cols = game.dims = game.dims .- 1
-    n_rows = max(n_rows, 2)
-    n_cols = max(n_cols, 2)
-    return Game(game; n_cols, n_rows)
+    grid_size -= 1
+    grid_size = max(grid_size, 2)
+    return Game(game; grid_size)
 end

@@ -37,19 +37,18 @@ mutable struct Game
     round::Int
     score::Float64
     visible::Bool
-    dims::NTuple{2,Int}
+    grid_size::Int
     can_respond::Bool
     can_start::Bool
 end
 
-function Game(game; n_rows, n_cols)
+function Game(game; grid_size)
     (;n_rounds,round,score,visible,can_respond,can_start) = game
-    return Game(;n_rows, n_cols, n_rounds,round, score, visible, can_respond, can_start)
+    return Game(;grid_size, n_rounds,round, score, visible, can_respond, can_start)
 end
 
 function Game(;
-    n_rows = 2, 
-    n_cols = 2, 
+    grid_size = 2, 
     n_rounds = 30, 
     round = n_rounds, 
     visible = true, 
@@ -57,8 +56,8 @@ function Game(;
     can_start = true,
     score = 0.0,
     )
-    dots = populate(n_rows, n_cols)
-    return Game(dots, n_rounds, round, score, visible, (n_rows,n_cols), can_respond, can_start)
+    dots = populate(grid_size)
+    return Game(dots, n_rounds, round, score, visible, grid_size, can_respond, can_start)
 end
 
 Broadcast.broadcastable(x::Game) = Ref(x)
