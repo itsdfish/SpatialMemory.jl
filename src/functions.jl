@@ -3,11 +3,7 @@ click_dot!(game, dot, gui::Nothing) = click_dot!(game, dot)
 
 function click_dot!(game, dot)
     can_respond(game) ? nothing : (return false)
-    if dot.selected
-        dot.selected = false
-    else
-        dot.selected = true
-    end
+    dot.selected = dot.selected ? false : true
     return true
 end
 
