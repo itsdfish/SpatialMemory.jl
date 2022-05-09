@@ -4,3 +4,4 @@ Pkg.activate("")
 using Revise, SpatialMemory
 
 gui = start()
+wait(Condition())
