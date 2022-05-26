@@ -1,7 +1,0 @@
-name = "MemoryGame"
-uuid = "391df77b-ddf3-41f7-a2fc-55b62d8ef80d"
-authors = ["dfish"]
-version = "0.1.0"
-
-[deps]
-SpatialMemory = "c29ff610-7f9b-4a80-8176-8ec6ff955760"
